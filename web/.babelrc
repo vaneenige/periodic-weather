@@ -1,0 +1,12 @@
+{
+  "presets": [
+    // webpack understands the native import syntax, and uses it for tree shaking
+    ["es2015", { "modules": false }],
+    // Add support for ES7 features
+    "stage-0"
+  ],
+  "plugins": [
+    ["transform-decorators-legacy"],
+    ["transform-react-jsx", { "pragma": "h" }]
+  ]
+}
