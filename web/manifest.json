@@ -1,0 +1,28 @@
+{
+  "name": "Periodic Weather",
+  "short_name": "Weather",
+  "icons": [
+    {
+      "src": "./app/assets/touch/PW_144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "./app/assets/touch/PW_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./app/assets/touch/PW_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "rotation": "portrait",
+  "background_color": "#FFC107",
+  "theme_color": "#FFC107",
+  "gcm_sender_id": "429194110716"
+}
