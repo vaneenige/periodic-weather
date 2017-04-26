@@ -23,6 +23,14 @@ To keep performance high and application size small this application is powered 
 
 * The application works offline, can be saved to the home screen (on android) and stores locations and subscriptions in local storage.
 
+## What's missing?
+The idea of this PWA was to show how user based push notifications could work yet there are some improvements not included yet:
+
+* Fahrenheit
+* Relative time of latest sync
+* Update data in cache on push
+* Notifications based on type instead of temperature
+
 ## License
 
 MIT
