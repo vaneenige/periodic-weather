@@ -30,8 +30,15 @@ export default class Modal extends Component {
   }
 
   toggleModal = () => {
+    if (!this.props.modal) {
+      setTimeout(this.focus, 0);
+    }
     this.props.setModal(!this.props.modal);
   };
+
+  focus = () => {
+    this.input.focus();
+  }
 
   render({ modal, network }) {
     return (
