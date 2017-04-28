@@ -30,6 +30,8 @@ The idea of this PWA was to show how user based push notifications could work ye
 * Relative time of latest sync
 * Update data in cache on push
 * Notifications based on type instead of temperature
+* Notifications based on user specific time
+* Background Sync for handling offline actions
 
 ## License
 
