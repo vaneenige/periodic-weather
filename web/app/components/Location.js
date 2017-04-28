@@ -29,7 +29,8 @@ export default class Location extends Component {
       transform: network ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 0)',
     };
     const toggleStyle = {
-      transform: network && serviceWorker ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 0)',
+      transform: network ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 0)',
+      display: serviceWorker ? 'block' : 'none',
     };
     return (
       <li className="item">
