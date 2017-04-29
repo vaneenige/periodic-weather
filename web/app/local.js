@@ -26,3 +26,18 @@ export const saveState = (stateValue) => {
     // Ignore
   }
 };
+
+/**
+ * Get the current subscription state of a location.
+ *
+ * @param {array} locations
+ * @param {string} location
+ */
+export const getLocationSubscription = (locations, location) => {
+  for (let i = 0; i < locations.length; i += 1) {
+    if (locations[i].name === location) {
+      return locations[i].subscribed;
+    }
+  }
+  return false;
+};

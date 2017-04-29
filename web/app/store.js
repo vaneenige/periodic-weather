@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { loadState, saveState } from './local';
+import { loadState, saveState, getLocationSubscription } from './local';
 
 const ACTIONS = {
   SET_NETWORK: ({ network, ...state }, { toggleState }) => ({
@@ -18,7 +18,7 @@ const ACTIONS = {
   }),
 
   ADD_LOCATION: ({ locations, ...state }, { location }) => ({
-    locations: [...locations, Object.assign({ subscribed: false }, location)],
+    locations: [...locations, Object.assign({ subscribed: false }, location)].sort((a, b) => a.name.localeCompare(b.name)),
     ...state,
   }),
 
@@ -39,8 +39,9 @@ const ACTIONS = {
   }),
 
   SYNC_LOCATIONS: ({ locations, ...state }, { newLocations }) => {
-    newLocations.map((location, i) => Object.assign(location, {
-      subscribed: locations[i].subscribed,
+    newLocations.sort((a, b) => a.name.localeCompare(b.name));
+    newLocations.map((newLocation) => Object.assign(newLocation, {
+      subscribed: getLocationSubscription(locations, newLocation.name),
     }));
     return {
       locations: newLocations,
