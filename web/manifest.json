@@ -21,7 +21,7 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "rotation": "portrait",
+  "orientation": "portrait",
   "background_color": "#FFC107",
   "theme_color": "#FFC107",
   "gcm_sender_id": "429194110716"
