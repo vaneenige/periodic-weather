@@ -45,4 +45,8 @@ module.exports = {
   stats: {
     colors: true,
   },
+
+  devServer: {
+    disableHostCheck: true,
+  },
 };
