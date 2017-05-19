@@ -3,7 +3,7 @@
  */
 export const loadState = (state) => {
   try {
-    const serializedState = localStorage.getItem('store');
+    const serializedState = localStorage.getItem('periodic-weather');
     if (serializedState === null) {
       return undefined;
     }
@@ -21,7 +21,7 @@ export const loadState = (state) => {
 export const saveState = (stateValue) => {
   try {
     const serializedState = JSON.stringify(stateValue);
-    localStorage.setItem('store', serializedState);
+    localStorage.setItem('periodic-weather', serializedState);
   } catch (err) {
     // Ignore
   }
