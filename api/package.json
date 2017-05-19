@@ -4,15 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "helmet": "^3.5.0",
-    "mongodb": "^2.2.25",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "helmet": "^3.6.0",
+    "mongodb": "^2.2.26",
     "request": "^2.81.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.2.0"
   }
 }
