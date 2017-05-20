@@ -16,7 +16,9 @@ export default class Modal extends Component {
 
   getLocation = (e) => {
     e.preventDefault();
-    if (this.props.locations.filter(i => i.name === this.input.value).length !== 0 || this.input.value === '') {
+    const value = this.input.value.toLowerCase();
+    const exists = this.props.locations.filter(i => i.name.toLowerCase() === value).length !== 0;
+    if (exists || value === '') {
       this.input.classList.add('error');
       this.input.value = '';
     } else {
