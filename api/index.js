@@ -8,7 +8,7 @@ const router = require('./app/router');
 const periodic = require('./app/periodic');
 
 const MongoClient = mongodb.MongoClient;
-const MongoUrl = `mongodb://${config.mongo.host}:${config.mongo.port}`;
+const MongoUrl = `mongodb://${config.mongo.host}:${config.mongo.port}/${config.mongo.database}`;
 
 const initialize = (db) => {
   const app = express();

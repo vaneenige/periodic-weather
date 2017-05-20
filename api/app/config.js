@@ -9,6 +9,7 @@ const config = {
   mongo: {
     host: '',
     port: '',
+    database: '',
   },
   server: {
     port: 0,
