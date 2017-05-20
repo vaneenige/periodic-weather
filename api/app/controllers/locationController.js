@@ -88,8 +88,10 @@ const locationController = {
     };
     request(options, (error, response, body) => {
       const parsedBody = JSON.parse(body);
-      for (let i = 0; i < parsedBody.list.length; i += 1) {
-        locationController.addStatus(db, parsedBody.list[i]);
+      if (typeof parsedBody.list !== 'undefined') {
+        for (let i = 0; i < parsedBody.list.length; i += 1) {
+          locationController.addStatus(db, parsedBody.list[i]);
+        }
       }
       callback(parsedBody);
     });
