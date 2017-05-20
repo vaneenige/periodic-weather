@@ -1,10 +1,11 @@
 const locationController = require('./controllers/locationController');
 const subscriptionController = require('./controllers/subscriptionController');
 const notificationController = require('./controllers/notificationController');
+const page = require('./page');
 
 const router = (app, db) => {
   app.get('/', (req, res) => {
-    res.send('Weather API!');
+    res.send(page);
   });
 
   app.post('/locations', (req, res) => {

@@ -10,7 +10,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then(resp => resp || fetch(event.request).then(response =>
       caches.open(CACHE_NAME).then((cache) => {
-        if (event.request.url.indexOf('/api/') === -1) {
+        if (event.request.url.match(/(locations|subscriptions|notifications)/) === null) {
           cache.put(event.request, response.clone());
         }
         return response;
@@ -39,7 +39,7 @@ self.addEventListener('push', (event) => {
     self.registration.pushManager.getSubscription().then((subscription) => {
       const subscriptionId = subscription.endpoint.replace('https://android.googleapis.com/gcm/send/', '', subscription);
 
-      return fetch('https://use-the-platform.com/api/weather/notifications', {
+      return fetch('./notifications', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

@@ -14,14 +14,12 @@ const initialize = (db) => {
   const app = express();
   app.use(helmet());
   app.use(bodyParser.json());
-  app.listen(config.server.port, () => {
-    console.log(`Application started on port ${config.server.port}`);
-  });
+  app.use(express.static('./../web/'));
+  app.listen(config.server.port);
   router(app, db);
   periodic(db);
 };
 
-// Only start if mongo is succesfully connected
 MongoClient.connect(MongoUrl, (err, db) => {
   if (err === null) initialize(db);
 });

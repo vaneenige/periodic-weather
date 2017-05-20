@@ -21,7 +21,7 @@ export default class Modal extends Component {
       this.input.value = '';
     } else {
       this.toggleModal();
-      fetchApi('weather/locations', { location: this.input.value }, (data) => {
+      fetchApi('locations', { location: this.input.value }, (data) => {
         this.input.classList.remove('error');
         this.input.value = '';
         this.props.addLocation(data);

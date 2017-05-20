@@ -22,7 +22,7 @@ export default class Toolbar extends Component {
 
   sync = () => {
     this.svg.classList.add('rotate');
-    fetchApi('weather/locations', {
+    fetchApi('locations', {
       locations: this.props.locations.map(location => location.id),
     }, (data) => {
       this.svg.classList.remove('rotate');

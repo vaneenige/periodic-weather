@@ -45,7 +45,6 @@ const notifySubscriptions = (db, location, err, result) => {
  * @param {object} db
  */
 const onPeriodicInterval = (db) => {
-  console.log('Periodic Update!');
   // Get all locations that should be updated
   getPeriodicSyncLocations(db, (locationIds) => {
     // Divide the locations in chunks for specific API rules

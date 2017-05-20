@@ -12,7 +12,7 @@ export default {
   },
 
   toggle: (subscriptionId, locationId, state, callback) => {
-    fetchApi('weather/subscriptions', { subscriptionId, locationId, state }, (data) => {
+    fetchApi('subscriptions', { subscriptionId, locationId, state }, (data) => {
       callback(data);
     });
   },
