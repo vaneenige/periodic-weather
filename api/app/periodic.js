@@ -34,7 +34,7 @@ const notifySubscriptions = (db, location, err, result) => {
   result.toArray().then((response) => {
     response.forEach(({ subscriptionId }) => {
       // Send a notification with the location payload to the subscribed user
-      notificationController.send(db, subscriptionId, location, () => { });
+      notificationController.send(db, subscriptionId, location);
     });
   });
 };

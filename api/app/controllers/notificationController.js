@@ -8,9 +8,8 @@ const notificationController = {
    * @param {object} db
    * @param {string} subscriptionId
    * @param {object} status
-   * @param {function} returnCallback
    */
-  send: (db, subscriptionId, { id, name, weather, main }, returnCallback) => {
+  send: (db, subscriptionId, { id, name, weather, main }) => {
     const { description, icon } = weather[0];
     const { temp } = main;
     const headers = {
@@ -29,11 +28,19 @@ const notificationController = {
       icon,
       tag: id,
     };
-    notificationController.createMessage(db, subscriptionId, payload, () => {
-      request(options, (error, response) => {
-        returnCallback(response.statusCode);
-      });
-    });
+    const collection = db.collection('messages');
+    const filter = { subscriptionId, tag: id, state: true };
+    const update = { $set: { body: payload.body, icon: payload.icon } };
+    const callback = (err, result) => {
+      if (result.value === null) {
+        notificationController.createMessage(db, subscriptionId, payload, () => {
+          request(options);
+        });
+      } else {
+        request(options);
+      }
+    };
+    collection.findOneAndUpdate(filter, update, callback);
   },
 
   /**

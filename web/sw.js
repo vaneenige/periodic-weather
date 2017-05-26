@@ -50,6 +50,7 @@ self.addEventListener('push', (event) => {
       })
         .then(response => response.json())
         .then((data) => {
+          if (data.value === null) return false;
           const title = data.value.title;
           const body = `${(data.value.body).substring(0, 32)}...`;
           const icon = `./app/assets/icon/${data.value.icon}.jpg`;
