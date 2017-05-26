@@ -3,6 +3,27 @@ const config = require('./../config');
 
 const locationController = {
   /**
+   * Check if a location already exists
+   *
+   * @param {object} db
+   * @param {string} location
+   * @param {function} foundCallback
+   * @param {function} notFoundCallback
+   */
+  checkDouble: (db, location, foundCallback, notFoundCallback) => {
+    const collection = db.collection('status');
+    const filter = { name: location };
+    const callback = (err, result) => {
+      if (result !== null) {
+        foundCallback(result);
+      } else {
+        notFoundCallback(result);
+      }
+    };
+    collection.findOne(filter, callback);
+  },
+
+  /**
    * Get the status of a single location.
    *
    * @param {object} db
@@ -10,18 +31,11 @@ const locationController = {
    * @param {function} returnCallback
    */
   getSingle: (db, { location }, returnCallback) => {
-    const collection = db.collection('status');
-    const filter = { name: location };
-    const callback = (err, result) => {
-      if (result !== null) {
-        returnCallback(result);
-      } else {
-        locationController.requestSingle(db, location, (returnValue) => {
-          returnCallback(returnValue);
-        });
-      }
-    };
-    collection.findOne(filter, callback);
+    // Check if the location already exists
+    locationController.checkDouble(db, location, returnCallback, () => {
+      // Request the location if it doesn't exist
+      locationController.requestSingle(db, location, returnCallback);
+    });
   },
 
   /**
@@ -42,9 +56,11 @@ const locationController = {
     };
     request(options, (error, response, body) => {
       const parsedBody = JSON.parse(body);
-      locationController.addLocation(db, parsedBody);
-      locationController.addStatus(db, parsedBody);
-      callback(JSON.stringify(locationController.getStatus(parsedBody)));
+      locationController.checkDouble(db, parsedBody.name, callback, () => {
+        locationController.addLocation(db, parsedBody);
+        locationController.addStatus(db, parsedBody);
+        callback(JSON.stringify(locationController.getStatus(parsedBody)));
+      });
     });
   },
 
