@@ -24,9 +24,11 @@ export default class Modal extends Component {
     } else {
       this.toggleModal();
       fetchApi('locations', { location: this.input.value }, (data) => {
-        this.input.classList.remove('error');
-        this.input.value = '';
-        this.props.addLocation(data);
+        if (typeof data.warning === 'undefined') {
+          this.input.classList.remove('error');
+          this.input.value = '';
+          this.props.addLocation(data);
+        }
       });
     }
   }

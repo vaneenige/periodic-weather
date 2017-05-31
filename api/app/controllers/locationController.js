@@ -1,6 +1,10 @@
 const request = require('request');
 const config = require('./../config');
 
+let requestAmount = 0;
+const requestLimit = 60;
+setInterval(() => { requestAmount = 0; }, 60000);
+
 const locationController = {
   /**
    * Check if a location already exists
@@ -46,6 +50,13 @@ const locationController = {
    * @param {function} callback
    */
   requestSingle: (db, location, callback) => {
+    requestAmount += 1;
+    if (requestAmount >= requestLimit) {
+      const warning = 'API limit reached, please try again in a minute!';
+      callback(JSON.stringify({ warning }));
+      return;
+    }
+
     const headers = {
       'Content-Type': 'application/json',
     };
@@ -94,6 +105,11 @@ const locationController = {
    * @param {function} callback
    */
   requestMultiple: (db, locations, callback) => {
+    requestAmount += 1;
+    if (requestAmount >= requestLimit) {
+      callback(null);
+      return;
+    }
     const headers = {
       'Content-Type': 'application/json',
     };
