@@ -53,7 +53,7 @@ const onPeriodicInterval = (db) => {
       // Request the locations in the chunks, update them in mongo and continue
       locationController.requestMultiple(db, locationChunk, (locations) => {
         // Report and return if the data doesn't match what we expect
-        if (typeof locations.list === 'undefined' || locations !== null) return;
+        if (typeof locations.list === 'undefined' || locations === null) return;
 
         // Use subscriptions collection to find specific users that want a notification
         const collection = db.collection('subscriptions');
